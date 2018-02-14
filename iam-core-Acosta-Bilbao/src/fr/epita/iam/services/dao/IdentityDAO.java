@@ -16,8 +16,7 @@ import fr.epita.iam.services.configuration.ConfigurationService;
 import fr.epita.logger.Logger;
 
 public class IdentityDAO {
-	//comment1
-	//comment2
+
 	private static final Logger LOGGER = new Logger(IdentityDAO.class);
 	
 	private static final String DB_HOST = "db.host";
@@ -82,7 +81,8 @@ public class IdentityDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List<Identity> readAllIdentities(Identity criteria) throws IdentitySearchException {
+	public List<Identity> searchAll(Identity criteria) throws IdentitySearchException {
+		
 		final List<Identity> results = new ArrayList<>();
 		Connection connection = null;
 		try {
@@ -99,13 +99,13 @@ public class IdentityDAO {
 			pstmt.setString(5, criteria.getUid());
 			pstmt.setString(6, criteria.getUid());
 			final ResultSet rs = pstmt.executeQuery();
+			
 			while (rs.next()) {
 				final Identity currentIdentity = new Identity();
 				// How to select the right index?
 				currentIdentity.setDisplayName(rs.getString("DISPLAY_NAME"));
 				currentIdentity.setEmail(rs.getString("EMAIL"));
 				currentIdentity.setUid(rs.getString("UID"));
-
 				results.add(currentIdentity);
 			}
 			rs.close();
