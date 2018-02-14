@@ -10,12 +10,14 @@ import fr.epita.logger.services.configuration.LoggerConfigurationService;
 
 public class Logger {
 
-	// TODO makes it configurable!
 	private static final String logPath = LoggerConfigurationService.getInstance().getConfigurationValue("log.path");
 	private static PrintWriter pw;
 
 	private static final String ERROR = "ERROR";
 	private static final String INFO = "INFO";
+	private static final String TRACE = "TRACE";
+	private static final String DEBUG = "DEBUG";
+	private static final String WARN = "WARN";
 
 	static {
 		try {
@@ -43,6 +45,16 @@ public class Logger {
 
 	public void info(String message) {
 		printMessage(message, INFO);
+	}
+	public void debug(String message) {
+		printMessage(message, DEBUG);
+	}
+
+	public void warning(String message) {
+		printMessage(message, WARN);
+	}
+	public void trace(String message) {
+		printMessage(message, TRACE);
 	}
 
 	private void printMessage(String message, String Level) {
