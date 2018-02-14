@@ -1,10 +1,16 @@
+/**
+ * 
+ */
 package fr.epita.iam.exceptions;
 
 import fr.epita.iam.datamodels.Identity;
 
-public class IdentitySearchException extends IdentityDataException {
-
-	public IdentitySearchException(Exception cause, Identity faultyIdentity) {
+/**
+ * @author usuario
+ *
+ */
+public class IdentityDeletionException extends IdentityDataException {
+	public IdentityDeletionException(Exception cause, Identity faultyIdentity) {
 		super(cause, faultyIdentity);
 	}
 
@@ -20,7 +26,6 @@ public class IdentitySearchException extends IdentityDataException {
 
 	@Override
 	public String getMessage() {
-		return "a problem occured while searching identities with that criteria : " + faultyIdentity;
+		return "a problem occured while deleting the identity : " + faultyIdentity;
 	}
-	
 }
