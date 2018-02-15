@@ -135,23 +135,20 @@ public class IdentityDAO {
 	}
 	
 	public void update(Identity identity) throws IdentityUpdateException {
-		LOGGER.info("Creating the identity: " + identity);
+		LOGGER.info("Update the identity: " + identity);
 		Connection connection = null;
 		try {
 			connection = getConnection();
 			// the PreparedStatement.RETURN_GENERATED_KEYS says that generated keys should be retrievable after execution
 			final PreparedStatement pstmt = connection.
-					prepareStatement("INSERT INTO IDENTITIES(UID, EMAIL, DISPLAY_NAME) VALUES (?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+					prepareStatement("UPDATE IDENTITIES "
+							+ "SET UID = ?, EMAIL = ?, DISPLAY_NAME = ? "
+							+ "WHERE ID = ?");
 			pstmt.setString(1, identity.getUid());
 			pstmt.setString(2, identity.getEmail());
 			pstmt.setString(3, identity.getDisplayName());
+			pstmt.setInt(4, identity.getId());
 			pstmt.execute();
-			ResultSet rs = pstmt.getGeneratedKeys();
-			//As we are only handling 1 insertion, if the insertion is made, it will return the auto generated id, so we will set it to the identity
-			while (rs.next()) {
-				// this sets the dbID 
-				identity.setId(rs.getInt(1));
-			}
 			pstmt.close();
 		} catch (final Exception e) {
 			// TODO: handle exception
