@@ -29,8 +29,7 @@ public class IdentityDAO {
 		Connection connection = null;
 		try {
 			connection = getConnection();
-			final PreparedStatement pstmt = connection
-					.prepareStatement("INSERT INTO IDENTITIES(UID, EMAIL, DISPLAY_NAME) VALUES (?, ?, ?)");
+			final PreparedStatement pstmt = connection.prepareStatement("INSERT INTO IDENTITIES(UID, EMAIL, DISPLAY_NAME) VALUES (?, ?, ?)");
 			pstmt.setString(1, identity.getUid());
 			pstmt.setString(2, identity.getEmail());
 			pstmt.setString(3, identity.getDisplayName());
@@ -92,12 +91,12 @@ public class IdentityDAO {
 			+ "WHERE (? IS NULL OR UID = ?) "+ "AND (? IS NULL OR EMAIL LIKE ?) " 
 			+ "AND (? IS NULL OR DISPLAY_NAME LIKE ?)");
 
-			pstmt.setString(1, criteria.getDisplayName());
-			pstmt.setString(2, criteria.getDisplayName() + "%");
+			pstmt.setString(1, criteria.getUid());
+			pstmt.setString(2, criteria.getUid());
 			pstmt.setString(3, criteria.getEmail());
 			pstmt.setString(4, criteria.getEmail() + "%");
-			pstmt.setString(5, criteria.getUid());
-			pstmt.setString(6, criteria.getUid());
+			pstmt.setString(5, criteria.getDisplayName());
+			pstmt.setString(6, criteria.getDisplayName() + "%");
 			final ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
