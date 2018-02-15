@@ -87,11 +87,10 @@ public class TestIdentityDAO {
 		final Identity searchedIdentity = dao.searchById(identityId);
 		
 		//then
-		System.out.println(resultList.get(resultList.indexOf(id1)).getId());
-		System.out.println(searchedIdentity.getId());
-		System.out.println(searchedIdentity);
+		assertTrue("Index mismatch problem", searchedIdentity.getId() == resultList.get(resultList.indexOf(id1)).getId());
+		//System.out.println(searchedIdentity);
 		dao.delete(searchedIdentity);
-		
+
 		//TODO: Implement Rule or correct assertion
 		//assertFalse("Couldn't erase the identity"+searchedIdentity,dao.searchById(identityId));
 
