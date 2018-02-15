@@ -16,9 +16,9 @@ public class TestIdentityDAO {
 	void testCreateAndSearch() throws IdentityCreationException, IdentitySearchException {
 		// Given
 		final Identity id1 = new Identity();
-		id1.setEmail("tbr@tbr.com");
-		id1.setUid("123");
-		id1.setDisplayName("Thomas Broussard");
+		id1.setEmail("testUser@tur.com");
+		id1.setUid("2345");
+		id1.setDisplayName("Test User");
 		System.out.println(id1);
 		final IdentityDAO dao = new IdentityDAO();
 		
@@ -27,8 +27,7 @@ public class TestIdentityDAO {
 
 		// Then
 		final List<Identity> resultList = dao.searchAll(id1);
-		assertTrue("Success in search",resultList.contains(id1));
-		assertTrue(resultList.get(resultList.indexOf(id1)).toString(),resultList.contains(id1));
+		assertTrue("Couldn't find the identity"+id1,resultList.contains(id1));
 
 //		if (resultList.contains(id1)) {
 //			System.out.println("success");
