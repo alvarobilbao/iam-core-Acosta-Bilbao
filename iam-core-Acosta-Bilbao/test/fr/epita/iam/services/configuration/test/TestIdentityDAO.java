@@ -3,7 +3,6 @@ package fr.epita.iam.services.configuration.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -19,8 +18,8 @@ public class TestIdentityDAO {
 	void testCreateAndSearch() throws IdentityCreationException, IdentitySearchException {
 		// Given
 		final Identity id1 = new Identity();
-		id1.setEmail("testUser@tur.com");
 		id1.setUid("2345");
+		id1.setEmail("testUser@tur.com");
 		id1.setDisplayName("Test User");
 		System.out.println(id1);
 		final IdentityDAO dao = new IdentityDAO();
@@ -45,14 +44,14 @@ public class TestIdentityDAO {
 	void testUpdateAndSearchById() throws IdentityCreationException, IdentitySearchException, IdentityUpdateException {
 		//Given
 		final Identity id1 = new Identity();
-		id1.setEmail("testUser@tur.com");
 		id1.setUid("2345");
+		id1.setEmail("testUser@tur.com");
 		id1.setDisplayName("Test User");
 		final IdentityDAO dao = new IdentityDAO();
 		dao.create(id1);
 		
-		id1.setEmail("updatetest@test.com");
 		id1.setUid("2347");
+		id1.setEmail("updatetest@test.com");
 		id1.setDisplayName("Updated User");
 		
 		

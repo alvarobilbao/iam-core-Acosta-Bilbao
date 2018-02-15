@@ -2,9 +2,10 @@ package fr.epita.iam.datamodels;
 
 public class Identity {
 
-	private String displayName;
 	private String uid;
 	private String email;
+	private String displayName;
+	//TODO: Comment the integration of id to Identity
 	private int id;
 	
 	public int getId() {
@@ -15,22 +16,14 @@ public class Identity {
 		this.id = id;
 	}
 
-	public Identity(String displayName, String uid, String email) {
-		this.displayName = displayName;
+	public Identity(String uid, String email, String displayName) {
 		this.uid = uid;
 		this.email = email;
+		this.displayName = displayName;
 	}
 	
 	public Identity() {
 		
-	}
-
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	public void setDisplayName(String displayName) {
-		this.displayName = displayName;
 	}
 
 	public String getUid() {
@@ -48,6 +41,15 @@ public class Identity {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
+	}
+
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
