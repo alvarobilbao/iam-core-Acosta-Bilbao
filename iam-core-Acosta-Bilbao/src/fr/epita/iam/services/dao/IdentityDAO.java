@@ -70,6 +70,8 @@ public class IdentityDAO {
 			final PreparedStatement pstmt = connection
 					.prepareStatement("DELETE FROM IDENTITIES where ID = ?");
             pstmt.setInt(1, identity.getId());
+            pstmt.execute();
+            pstmt.close();
         } catch (final Exception e) {
         	LOGGER.error("error while deleting the identity: " + identity + "got the error: " + e.getMessage());
 			throw new IdentityDeletionException(e, identity);

@@ -73,8 +73,8 @@ public class TestIdentityDAO {
 		//Given
 		final Identity id1 = new Identity();
 		id1.setUid("4567");
-		id1.setEmail("testUserDelete2@tur.com");
-		id1.setDisplayName("Test UserDelete2");
+		id1.setEmail("testUserDelete@tur.com");
+		id1.setDisplayName("Test UserDelete");
 		final IdentityDAO dao = new IdentityDAO();
 		int identityId;
 		
@@ -88,9 +88,11 @@ public class TestIdentityDAO {
 		
 		//then
 		System.out.println(resultList.get(resultList.indexOf(id1)).getId());
+		System.out.println(searchedIdentity.getId());
 		System.out.println(searchedIdentity);
 		dao.delete(searchedIdentity);
 		
+		//TODO: Implement Rule or correct assertion
 		//assertFalse("Couldn't erase the identity"+searchedIdentity,dao.searchById(identityId));
 
 	}
