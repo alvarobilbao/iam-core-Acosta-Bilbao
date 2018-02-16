@@ -5,5 +5,6 @@
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/logger"/>
+	<classpathentry kind="lib" path="lib/derbyclient.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
