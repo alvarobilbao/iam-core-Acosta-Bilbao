@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,23 +14,20 @@ import fr.epita.iam.exceptions.IdentityCreationException;
 import fr.epita.iam.exceptions.IdentityDeletionException;
 import fr.epita.iam.exceptions.IdentitySearchException;
 import fr.epita.iam.exceptions.IdentityUpdateException;
-import fr.epita.iam.services.configuration.ConfigurationService;
-import fr.epita.logger.Logger;
+import fr.epita.utils.services.configuration.ConfigurationService;
+import fr.epita.iam.services.database.DBConnection;
+import fr.epita.utils.logger.Logger;
 
 public class IdentityDAO {
 
 	private static final Logger LOGGER = new Logger(IdentityDAO.class);
-	
-	private static final String DB_HOST = "db.host";
-	private static final String DB_PWD = "db.pwd";
-	private static final String DB_USER = "db.user";
 	
 	public void create(Identity identity) throws IdentityCreationException {
 
 		LOGGER.info("Creating the identity: " + identity);
 		Connection connection = null;
 		try {
-			connection = getConnection();
+			connection = DBConnection.getConnection();
 			// the PreparedStatement.RETURN_GENERATED_KEYS says that generated keys should be retrievable after execution
 			final PreparedStatement pstmt = connection.
 					prepareStatement("INSERT INTO IDENTITIES(UID, EMAIL, DISPLAY_NAME) VALUES (?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
@@ -66,7 +64,7 @@ public class IdentityDAO {
 		// TODO: Implement delete for the GUI behavior
 		//Delete with ID only
 		try {
-			connection = getConnection();
+			connection = DBConnection.getConnection();
 			final PreparedStatement pstmt = connection
 					.prepareStatement("DELETE FROM IDENTITIES where ID = ?");
             pstmt.setInt(1, identity.getId());
@@ -96,7 +94,7 @@ public class IdentityDAO {
 		final List<Identity> results = new ArrayList<>();
 		Connection connection = null;
 		try {
-			connection = getConnection();
+			connection = DBConnection.getConnection();
 			final PreparedStatement pstmt = connection
 					.prepareStatement("SELECT UID, EMAIL, DISPLAY_NAME, ID FROM IDENTITIES " 
 			+ "WHERE (? IS NULL OR UID = ?) "+ "AND (? IS NULL OR EMAIL LIKE ?) " 
@@ -140,7 +138,7 @@ public class IdentityDAO {
 		LOGGER.info("Update the identity: " + identity);
 		Connection connection = null;
 		try {
-			connection = getConnection();
+			connection = DBConnection.getConnection();
 			// the PreparedStatement.RETURN_GENERATED_KEYS says that generated keys should be retrievable after execution
 			final PreparedStatement pstmt = connection.
 					prepareStatement("UPDATE IDENTITIES "
@@ -167,21 +165,6 @@ public class IdentityDAO {
 			}
 		}
 	}
-	
-	private static Connection getConnection() throws ClassNotFoundException, SQLException {
-		// TODO make this variable through configuration
-
-		final ConfigurationService confService = ConfigurationService.getInstance();
-
-		final String url = confService.getConfigurationValue(DB_HOST);
-		final String password = confService.getConfigurationValue(DB_PWD);
-		final String username = confService.getConfigurationValue(DB_USER);
-
-		Class.forName("org.apache.derby.jdbc.ClientDriver");
-
-		final Connection connection = DriverManager.getConnection(url, username, password);
-		return connection;
-	}
 
 	public Identity searchById(int id) throws IdentitySearchException {
 		final List<Identity> results = new ArrayList<>();
@@ -189,7 +172,7 @@ public class IdentityDAO {
 		final Identity foundIdentity = new Identity();
 		
 		try {
-			connection = getConnection();
+			connection = DBConnection.getConnection();
 			final PreparedStatement pstmt = connection
 					.prepareStatement("SELECT ID, UID, EMAIL, DISPLAY_NAME FROM IDENTITIES " 
 			+ "WHERE (? IS NULL OR ID = ?) ");

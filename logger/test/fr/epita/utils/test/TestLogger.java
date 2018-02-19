@@ -1,4 +1,4 @@
-package fr.epita.logger.test;
+package fr.epita.utils.test;
 
 import static org.junit.Assert.assertTrue;
 
@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
 
-import fr.epita.logger.Logger;
-import fr.epita.logger.services.configuration.LoggerConfigurationService;
+import fr.epita.utils.logger.Logger;
+import fr.epita.utils.services.configuration.ConfigurationService;
 
 public class TestLogger {
 
@@ -21,7 +21,7 @@ public class TestLogger {
 				logger.error("first error");
 
 				// then
-				final String pathname = LoggerConfigurationService.getInstance().getConfigurationValue("log.path");
+				final String pathname = ConfigurationService.getInstance().getConfigurationValue("log.path");
 				final File file = new File(pathname);
 				assertTrue("file exists", file.exists());
 				boolean found = false;

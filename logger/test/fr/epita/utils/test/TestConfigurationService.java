@@ -1,4 +1,4 @@
-package fr.epita.iam.services.configuration.test;
+package fr.epita.utils.test;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -7,7 +7,7 @@ import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
-import fr.epita.iam.services.configuration.ConfigurationService;
+import fr.epita.utils.services.configuration.ConfigurationService;
 
 class TestConfigurationService {
 

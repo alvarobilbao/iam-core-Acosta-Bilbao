@@ -1,4 +1,4 @@
-package fr.epita.logger;
+package fr.epita.utils.logger;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -6,11 +6,11 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import fr.epita.logger.services.configuration.LoggerConfigurationService;
+import fr.epita.utils.services.configuration.ConfigurationService;
 
 public class Logger {
 
-	private static final String logPath = LoggerConfigurationService.getInstance().getConfigurationValue("log.path");
+	private static final String logPath = ConfigurationService.getInstance().getConfigurationValue("log.path");
 	private static PrintWriter pw;
 
 	private static final String ERROR = "ERROR";

@@ -1,4 +1,4 @@
-package fr.epita.iam.services.configuration.test;
+package fr.epita.iam.services.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

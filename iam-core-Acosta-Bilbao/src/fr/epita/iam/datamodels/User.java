@@ -7,6 +7,10 @@ public class User {
 	private int Id;
 	private Identity identity;
 	
+	public User() {
+		
+	}
+	
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
@@ -66,6 +70,22 @@ public class User {
 				other.username != null && other.password != null) {
 			return other.username.equals(this.username) && 
 					other.password.equals(this.password);
+		} else if ((other.username == null && this.username == null) && 
+				(other.password == null && this.password == null) &&
+				other.identity != null) {
+			return other.identity.equals(this.identity);
+		} else if ((other.username == null && this.username == null) && 
+				(other.identity == null && this.identity == null) &&
+				other.password != null) {
+			return other.password.equals(this.password);
+		} else if ((other.identity == null && this.identity == null) && 
+				(other.password == null && this.password == null) &&
+				other.username != null) {
+			return other.username.equals(this.username);
+		} else if ((other.username == null && this.username == null) && 
+				(other.password == null && this.password == null) &&
+				(other.identity == null && this.identity == null) ) {
+			return true;
 		}
 		
 		return false;

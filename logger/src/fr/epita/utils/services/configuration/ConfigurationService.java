@@ -1,4 +1,4 @@
-package fr.epita.iam.services.configuration;
+package fr.epita.utils.services.configuration;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class ConfigurationService {
+
 	private Properties properties;
 
 	private static ConfigurationService instance;
@@ -30,5 +31,4 @@ public class ConfigurationService {
 	public String getConfigurationValue(String propertyKey) {
 		return properties.getProperty(propertyKey);
 	}
-
 }
