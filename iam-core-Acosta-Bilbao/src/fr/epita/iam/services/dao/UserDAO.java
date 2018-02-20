@@ -10,8 +10,10 @@ import java.util.List;
 import fr.epita.iam.datamodels.Identity;
 import fr.epita.iam.datamodels.User;
 import fr.epita.iam.exceptions.IdentityCreationException;
+import fr.epita.iam.exceptions.IdentityDeletionException;
 import fr.epita.iam.exceptions.IdentitySearchException;
 import fr.epita.iam.exceptions.UserCreationException;
+import fr.epita.iam.exceptions.UserDeletionException;
 import fr.epita.iam.exceptions.UserSearchException;
 import fr.epita.iam.services.database.DBConnection;
 import fr.epita.utils.logger.Logger;
@@ -59,12 +61,12 @@ private static final Logger LOGGER = new Logger(IdentityDAO.class);
 	}
 	
 	/**
-	 * Read all the identities from the database
+	 * Read an user from the database
 	 * @return
 	 * @throws IdentitySearchException 
 	 * @throws SQLException
 	 */
-	public List<User> searchAll(User criteria) throws UserSearchException, IdentitySearchException {
+	public List<User> search(User criteria) throws UserSearchException, IdentitySearchException {
 		
 		final List<User> results = new ArrayList<>();
 		Connection connection = null;
@@ -73,12 +75,10 @@ private static final Logger LOGGER = new Logger(IdentityDAO.class);
 			connection = DBConnection.getConnection();
 			final PreparedStatement pstmt = connection
 					.prepareStatement("SELECT USERNAME, PASSWORD, USER_ID, IDENTITY_ID FROM USERS " 
-			+ "WHERE (? IS NULL OR USERNAME LIKE ?) "+ "AND (? IS NULL OR PASSWORD LIKE ?)");
+			+ "WHERE USERNAME = ? AND PASSWORD = ?");
 
 			pstmt.setString(1, criteria.getUsername());
-			pstmt.setString(2, criteria.getUsername() + "%");
-			pstmt.setString(3, criteria.getPassword());
-			pstmt.setString(4, criteria.getPassword() + "%");
+			pstmt.setString(2, criteria.getPassword());
 			final ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -106,6 +106,32 @@ private static final Logger LOGGER = new Logger(IdentityDAO.class);
 		}
 
 		return results;
+	}
+
+	public void delete(User user) throws UserDeletionException {
+		LOGGER.info("Deleting the identity: " + user);
+		Connection connection = null;
+		// TODO: Implement delete for the GUI behavior
+		//Delete with ID only
+		try {
+			connection = DBConnection.getConnection();
+			final PreparedStatement pstmt = connection
+					.prepareStatement("DELETE FROM IDENTITIES where ID = ?");
+            pstmt.setInt(1, user.getId());
+            pstmt.execute();
+            pstmt.close();
+        } catch (final Exception e) {
+        	LOGGER.error("error while deleting the identity: " + user + "got the error: " + e.getMessage());
+			throw new UserDeletionException(e, user);
+        } finally {
+        	if (connection != null) {
+				try {
+					connection.close();
+				} catch (final SQLException e) {
+					// can do nothing here, except logging maybe?
+				}
+			}
+        }
 	}
 
 	

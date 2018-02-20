@@ -16,9 +16,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Create extends JFrame {
+public class Create extends JPanel {
 
-	private JPanel contentPane;
 	private JTextField txtUidCreate;
 	private JTextField txtDisplayNameCreate;
 	private JTextField txtEmailCreate;
@@ -27,32 +26,11 @@ public class Create extends JFrame {
 	private JLabel lblEmail;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Create frame = new Create();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public Create() {
-		setResizable(false);
-		setTitle("Identity Creation");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 285, 310);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 		@SuppressWarnings("unused")
 		final Identity id1 = new Identity();
@@ -60,32 +38,32 @@ public class Create extends JFrame {
 		final IdentityDAO dao = new IdentityDAO();
 		
 		txtUidCreate = new JTextField();
-		txtUidCreate.setBounds(66, 36, 141, 20);
+		txtUidCreate.setBounds(66, 66, 141, 20);
 		txtUidCreate.setColumns(10);
 		
 		txtDisplayNameCreate = new JTextField();
-		txtDisplayNameCreate.setBounds(66, 94, 141, 20);
+		txtDisplayNameCreate.setBounds(66, 124, 141, 20);
 		txtDisplayNameCreate.setColumns(10);
 		
 		txtEmailCreate = new JTextField();
-		txtEmailCreate.setBounds(66, 150, 141, 20);
+		txtEmailCreate.setBounds(66, 180, 141, 20);
 		txtEmailCreate.setColumns(10);
 		
 		lblUid = new JLabel("UID");
-		lblUid.setBounds(66, 11, 86, 14);
+		lblUid.setBounds(66, 41, 86, 14);
 		
 		lblDisplayName = new JLabel("Display Name");
-		lblDisplayName.setBounds(66, 69, 86, 14);
+		lblDisplayName.setBounds(66, 99, 86, 14);
 		
 		lblEmail = new JLabel("E-mail");
-		lblEmail.setBounds(66, 125, 86, 14);
-		contentPane.setLayout(null);
-		contentPane.add(txtUidCreate);
-		contentPane.add(lblUid);
-		contentPane.add(txtDisplayNameCreate);
-		contentPane.add(lblDisplayName);
-		contentPane.add(txtEmailCreate);
-		contentPane.add(lblEmail);
+		lblEmail.setBounds(66, 155, 86, 14);
+		this.setLayout(null);
+		this.add(txtUidCreate);
+		this.add(lblUid);
+		this.add(txtDisplayNameCreate);
+		this.add(lblDisplayName);
+		this.add(txtEmailCreate);
+		this.add(lblEmail);
 		
 		JButton btnCreate = new JButton("Create");
 		btnCreate.addActionListener(new ActionListener() {
@@ -124,11 +102,20 @@ public class Create extends JFrame {
 				PopUp.popUpMessage("Identity created:  "+ messageString);
 			}
 		});
-		btnCreate.setBounds(78, 203, 115, 23);
-		contentPane.add(btnCreate);
+		btnCreate.setBounds(65, 233, 144, 23);
+		this.add(btnCreate);
 		
-		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(78, 237, 115, 23);
-		contentPane.add(btnCancel);
+		JButton btnManage = new JButton("Manage Identities");
+		btnManage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MainFrame.getMainFrame().setViewTo(MainFrame.MANAGE_IDENTITY_VIEW);
+			}
+		});
+		btnManage.setBounds(65, 267, 144, 23);
+		this.add(btnManage);
+		
+		JLabel lblCreateNewIdentity = new JLabel("CREATE NEW IDENTITY");
+		lblCreateNewIdentity.setBounds(10, 11, 197, 14);
+		add(lblCreateNewIdentity);
 	}
 }

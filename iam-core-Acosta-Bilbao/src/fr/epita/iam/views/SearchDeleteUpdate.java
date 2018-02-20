@@ -30,30 +30,14 @@ import java.awt.Dimension;
 import javax.swing.JTextPane;
 import java.awt.SystemColor;
 
-public class SearchDeleteUpdate extends JFrame {
+public class SearchDeleteUpdate extends JPanel {
 
-	private JPanel contentPane;
 	private JTextField txtUidSearch;
 	private JTextField txtDisplayNameSearch;
 	private JTextField txtEmailSearch;
 	private JTextField txtUidUpdate;
 	private JTextField txtDisplayNameUpdate;
 	private JTextField txtEmailUpdate;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SearchDeleteUpdate frame = new SearchDeleteUpdate();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
 	
 
@@ -61,14 +45,9 @@ public class SearchDeleteUpdate extends JFrame {
 	 * Create the frame.
 	 * @throws IdentitySearchException 
 	 */
-	public SearchDeleteUpdate() throws IdentitySearchException {
-		setTitle("Search - Update - Delete");
-		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public SearchDeleteUpdate(){
 		setBounds(100, 100, 676, 366);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 		//create the model and add elements
      	final Identity id1 = new Identity();
@@ -102,7 +81,7 @@ public class SearchDeleteUpdate extends JFrame {
 		lblEmailSearch.setBounds(15, 214, 106, 14);
 			
 		JButton btnSearchId = new JButton("Search");
-		btnSearchId.setBounds(15, 291, 115, 23);
+		btnSearchId.setBounds(15, 291, 125, 23);
 		
 		btnSearchId.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -188,36 +167,36 @@ public class SearchDeleteUpdate extends JFrame {
         });
  
 		scrollPane.setViewportView(lstSearch);
-		contentPane.setLayout(null);
-		contentPane.add(txtEmailSearch);
-		contentPane.add(txtUidSearch);
-		contentPane.add(btnSearchId);
-		contentPane.add(lblDisplayNameSearch);
-		contentPane.add(txtDisplayNameSearch);
-		contentPane.add(lblUidSearch);
-		contentPane.add(lblEmailSearch);
-		contentPane.add(scrollPane);
+		this.setLayout(null);
+		this.add(txtEmailSearch);
+		this.add(txtUidSearch);
+		this.add(btnSearchId);
+		this.add(lblDisplayNameSearch);
+		this.add(txtDisplayNameSearch);
+		this.add(lblUidSearch);
+		this.add(lblEmailSearch);
+		this.add(scrollPane);
 
-		contentPane.add(lblEmailUpdate);
-		contentPane.add(txtEmailUpdate);
-		contentPane.add(lblUidUpdate);
-		contentPane.add(txtDisplayNameUpdate);
-		contentPane.add(lblDisplayNameUpdate);
-		contentPane.add(txtUidUpdate);
+		this.add(lblEmailUpdate);
+		this.add(txtEmailUpdate);
+		this.add(lblUidUpdate);
+		this.add(txtDisplayNameUpdate);
+		this.add(lblDisplayNameUpdate);
+		this.add(txtUidUpdate);
 		
 		JTextPane txtpnForSearchingAn = new JTextPane();
 		txtpnForSearchingAn.setEditable(false);
 		txtpnForSearchingAn.setBackground(SystemColor.menu);
 		txtpnForSearchingAn.setText("For searching an identity, please fill the following fields:");
 		txtpnForSearchingAn.setBounds(15, 43, 115, 48);
-		contentPane.add(txtpnForSearchingAn);
+		this.add(txtpnForSearchingAn);
 		
 		JTextPane txtpnForUpdatingSearch = new JTextPane();
 		txtpnForUpdatingSearch.setEditable(false);
 		txtpnForUpdatingSearch.setText("To update, search an identity, then click on it on the list.");
 		txtpnForUpdatingSearch.setBackground(SystemColor.menu);
 		txtpnForUpdatingSearch.setBounds(534, 43, 115, 48);
-		contentPane.add(txtpnForUpdatingSearch);
+		this.add(txtpnForUpdatingSearch);
 		
 		JButton btnDelete = new JButton("Delete");
 		
@@ -237,8 +216,8 @@ public class SearchDeleteUpdate extends JFrame {
 				}
 			}
 		});
-		btnDelete.setBounds(259, 291, 115, 23);
-		contentPane.add(btnDelete);
+		btnDelete.setBounds(197, 291, 125, 23);
+		this.add(btnDelete);
 		
 		JButton btnUpdate = new JButton("Update");
 
@@ -281,13 +260,22 @@ public class SearchDeleteUpdate extends JFrame {
 			}
 		});
 		
-		btnUpdate.setBounds(534, 291, 115, 23);
-		contentPane.add(btnUpdate);
+		btnUpdate.setBounds(534, 291, 125, 23);
+		this.add(btnUpdate);
 		
 		JTextPane txtpnToDeleteSearch = new JTextPane();
 		txtpnToDeleteSearch.setText("To delete, search an identity, then click on it on the list, press Delete:");
 		txtpnToDeleteSearch.setBackground(SystemColor.menu);
 		txtpnToDeleteSearch.setBounds(158, 260, 349, 23);
-		contentPane.add(txtpnToDeleteSearch);
+		this.add(txtpnToDeleteSearch);
+		
+		JButton btnBackToCreate = new JButton("Back to create");
+		btnBackToCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setViewTo(MainFrame.CREATE_IDENTITY_VIEW);
+			}
+		});
+		btnBackToCreate.setBounds(367, 291, 125, 23);
+		add(btnBackToCreate);
 	}
 }
