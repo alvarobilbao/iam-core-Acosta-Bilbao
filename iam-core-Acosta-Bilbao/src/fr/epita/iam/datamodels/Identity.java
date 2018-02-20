@@ -1,53 +1,102 @@
 package fr.epita.iam.datamodels;
 
+/**
+ * <h3>Description</h3>
+ * <p>This class allows to ...</p>
+ *
+ * <h3>Usage</h3>
+ * <p>This class is used as follows:
+ *   <pre><code>${type_name} instance = new ${type_name}();</code></pre>
+ * </p>
+ * 
+ *
+ * @author Stéfano Acosta - Álvaro Bilbao
+ * ${tags}
+ */
 public class Identity {
 
 	private String uid;
 	private String email;
 	private String displayName;
-	//TODO: Comment the integration of id to Identity
 	private int id;
 	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	
+	/**
+	 * Non-empty Constructor for the Class Identity, 3 Strings parameters must be given 
+	 * or be declared as null, at least one parameter should be different than null otherwise
+	 * the suggested Constructor for Identity is the empty Identity() Constructor.
+	 * 
+	 * @param uid Should be a String containing numbers only
+	 * @param email
+	 * @param displayName
+	 */
 	public Identity(String uid, String email, String displayName) {
 		this.uid = uid;
 		this.email = email;
 		this.displayName = displayName;
 	}
 	
+	/**
+	 * Default empty constructor for Class Identity.
+	 */
 	public Identity() {
 		
 	}
 
+	/**
+	 * @return The String uid
+	 */
 	public String getUid() {
 		return uid;
 	}
 
+	/**
+	 * @param uid , the String uid to set
+	 */
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-
+	
+	/**
+	 * @return The String email
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * @param email , the String email to set
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 	
+	/**
+	 * @return The String displayName
+	 */
 	public String getDisplayName() {
 		return displayName;
 	}
 
+	/**
+	 * @param displayName , the String displayName to set
+	 */
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
+	}
+	
+	/**
+	 * @return The int id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id ,  the int id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	
@@ -58,6 +107,7 @@ public class Identity {
 	public String toString() {
 		return "Identity [displayName=" + displayName + ", uid=" + uid + ", email=" + email + "]";
 	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
