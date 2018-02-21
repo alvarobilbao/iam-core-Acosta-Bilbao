@@ -20,6 +20,7 @@ public class MainFrame extends JFrame {
 	 * Create the frame.
 	 */
 	private MainFrame() {
+		setTitle("IamCore Java Project - Acosta - Bilbao");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
 		contentPane = new Login();
