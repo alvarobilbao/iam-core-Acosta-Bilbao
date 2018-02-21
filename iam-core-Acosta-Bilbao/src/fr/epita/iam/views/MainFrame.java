@@ -21,9 +21,8 @@ public class MainFrame extends JFrame {
 	 */
 	private MainFrame() {
 		setTitle("IamCore Java Project - Acosta - Bilbao");
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 380, 244);
+		setBounds(100, 100, 700, 500);
 		contentPane = new Login();
 		setContentPane(contentPane);
 	}
