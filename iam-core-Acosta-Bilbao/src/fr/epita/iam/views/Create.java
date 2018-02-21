@@ -33,7 +33,7 @@ public class Create extends JPanel {
 	 * Create the frame.
 	 */
 	public Create() {
-		setBounds(100, 100, 285, 310);
+		setBounds(100, 100, 285, 330);
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 		@SuppressWarnings("unused")
