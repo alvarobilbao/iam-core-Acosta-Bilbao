@@ -33,7 +33,7 @@ public class Create extends JPanel {
 	 * Create the frame.
 	 */
 	public Create() {
-		setBounds(100, 100, 285, 330);
+		setBounds(100, 100, 400, 375);
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 		@SuppressWarnings("unused")
@@ -42,25 +42,25 @@ public class Create extends JPanel {
 		final IdentityDAO dao = new IdentityDAO();
 		
 		txtUidCreate = new JTextField();
-		txtUidCreate.setBounds(66, 66, 141, 20);
+		txtUidCreate.setBounds(112, 79, 141, 20);
 		txtUidCreate.setColumns(10);
 		
 		txtDisplayNameCreate = new JTextField();
-		txtDisplayNameCreate.setBounds(66, 124, 141, 20);
+		txtDisplayNameCreate.setBounds(112, 137, 141, 20);
 		txtDisplayNameCreate.setColumns(10);
 		
 		txtEmailCreate = new JTextField();
-		txtEmailCreate.setBounds(66, 180, 141, 20);
+		txtEmailCreate.setBounds(112, 193, 141, 20);
 		txtEmailCreate.setColumns(10);
 		
 		lblUid = new JLabel("UID");
-		lblUid.setBounds(66, 41, 86, 14);
+		lblUid.setBounds(112, 54, 86, 14);
 		
 		lblDisplayName = new JLabel("Display Name");
-		lblDisplayName.setBounds(66, 99, 86, 14);
+		lblDisplayName.setBounds(112, 112, 86, 14);
 		
 		lblEmail = new JLabel("E-mail");
-		lblEmail.setBounds(66, 155, 86, 14);
+		lblEmail.setBounds(112, 168, 86, 14);
 		this.setLayout(null);
 		this.add(txtUidCreate);
 		this.add(lblUid);
@@ -106,7 +106,7 @@ public class Create extends JPanel {
 				PopUp.popUpMessage("Identity created:  "+ messageString);
 			}
 		});
-		btnCreate.setBounds(65, 233, 144, 23);
+		btnCreate.setBounds(109, 230, 144, 23);
 		this.add(btnCreate);
 		
 		JButton btnManage = new JButton("Manage Identities");
@@ -115,7 +115,7 @@ public class Create extends JPanel {
 				MainFrame.getMainFrame().setViewTo(MainFrame.MANAGE_IDENTITY_VIEW);
 			}
 		});
-		btnManage.setBounds(65, 267, 144, 23);
+		btnManage.setBounds(109, 264, 144, 23);
 		this.add(btnManage);
 		
 		JLabel lblCreateNewIdentity = new JLabel("CREATE NEW IDENTITY");

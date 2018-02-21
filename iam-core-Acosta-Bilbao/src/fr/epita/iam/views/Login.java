@@ -30,11 +30,11 @@ public class Login extends JPanel {
 		this.setLayout(null);
 		
 		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setBounds(26, 36, 84, 14);
+		lblUsername.setBounds(35, 76, 84, 14);
 		this.add(lblUsername);
 		
 		usernameField = new JTextField();
-		usernameField.setBounds(129, 33, 154, 20);
+		usernameField.setBounds(129, 73, 154, 20);
 		this.add(usernameField);
 		usernameField.setColumns(10);
 		
@@ -51,7 +51,7 @@ public class Login extends JPanel {
 				}
 			}
 		});
-		signInButton.setBounds(75, 153, 89, 23);
+		signInButton.setBounds(55, 218, 120, 23);
 		this.add(signInButton);
 		
 		JButton registerButton = new JButton("Register");
@@ -62,16 +62,16 @@ public class Login extends JPanel {
 				main.setViewTo(MainFrame.SIGNUP_VIEW);
 			}
 		});
-		registerButton.setBounds(233, 153, 89, 23);
+		registerButton.setBounds(225, 218, 120, 23);
 		this.add(registerButton);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(26, 80, 84, 14);
+		lblPassword.setBounds(35, 141, 84, 14);
 		this.add(lblPassword);
 		
 		passwordField = new JPasswordField();
 		passwordField.setColumns(10);
-		passwordField.setBounds(129, 77, 154, 20);
+		passwordField.setBounds(129, 138, 154, 20);
 		this.add(passwordField);
 	}
 }

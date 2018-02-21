@@ -70,7 +70,7 @@ public class SignUp extends JPanel {
 				SignUpController.onCreateUserBtnClick(username, password, uid, displayName, passConf, email);
 			}
 		});
-		btnSignUp.setBounds(60, 227, 144, 23);
+		btnSignUp.setBounds(28, 224, 144, 23);
 		this.add(btnSignUp);
 		
 		JButton btnLogin = new JButton("Back to Login");
@@ -81,11 +81,11 @@ public class SignUp extends JPanel {
 				mainframe.setViewTo(MainFrame.LOGIN_VIEW);
 			}
 		});
-		btnLogin.setBounds(232, 227, 144, 23);
+		btnLogin.setBounds(200, 224, 144, 23);
 		this.add(btnLogin);
 		
 		usernameField = new JTextField();
-		usernameField.setBounds(197, 20, 150, 20);
+		usernameField.setBounds(197, 20, 154, 20);
 		this.add(usernameField);
 		usernameField.setColumns(10);
 		

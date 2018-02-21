@@ -20,11 +20,9 @@ public class MainFrame extends JFrame {
 	 * Create the frame.
 	 */
 	private MainFrame() {
-		//Title set
 		setTitle("IamCore Java Project - Acosta - Bilbao");
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 700, 500);
+		setBounds(100, 100, 400, 375);
 		contentPane = new Login();
 		setContentPane(contentPane);
 	}
@@ -41,15 +39,19 @@ public class MainFrame extends JFrame {
 		switch(view) {
 		case SIGNUP_VIEW:
 			selectedView = new SignUp();
+			setBounds(100, 100, 400, 375);
 			break;
 		case CREATE_IDENTITY_VIEW:
 			selectedView = new Create();
+			setBounds(100, 100, 400, 375);
 			break;
 		case MANAGE_IDENTITY_VIEW:
 			selectedView = new SearchDeleteUpdate();
+			setBounds(100, 100, 700, 450);
 			break;
 		default: 
 			selectedView = new Login();
+			setBounds(100, 100, 400, 375);
 			break;
 		}
 		setContentPane(selectedView);
