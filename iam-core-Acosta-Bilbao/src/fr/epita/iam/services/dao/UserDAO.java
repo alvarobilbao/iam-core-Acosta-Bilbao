@@ -156,7 +156,7 @@ private static final String SQL_CLOSING_RESULTSET_ERROR = "There was an sql erro
 		try {
 			connection = DBConnection.getConnection();
 			pstmt = connection
-					.prepareStatement("DELETE FROM IDENTITIES where ID = ?");
+					.prepareStatement("DELETE FROM USERS where USER_ID = ?");
             pstmt.setInt(1, user.getId());
             pstmt.execute();
         } catch (final Exception e) {

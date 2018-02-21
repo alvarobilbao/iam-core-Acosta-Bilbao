@@ -8,12 +8,13 @@ public class User {
 	private Identity identity;
 	
 	public User() {
-		
+		this.identity = new Identity();
 	}
 	
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
+		this.identity = new Identity();
 	}
 	
 	
