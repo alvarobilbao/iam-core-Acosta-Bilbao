@@ -1,8 +1,5 @@
 package fr.epita.iam.views;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
@@ -32,6 +29,10 @@ import java.awt.SystemColor;
 
 public class SearchDeleteUpdate extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField txtUidSearch;
 	private JTextField txtDisplayNameSearch;
 	private JTextField txtEmailSearch;

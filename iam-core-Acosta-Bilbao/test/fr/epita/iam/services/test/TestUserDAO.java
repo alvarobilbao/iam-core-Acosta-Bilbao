@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import fr.epita.iam.datamodels.Identity;
 import fr.epita.iam.datamodels.User;
 import fr.epita.iam.exceptions.IdentityCreationException;
+import fr.epita.iam.exceptions.IdentityDeletionException;
 import fr.epita.iam.exceptions.IdentitySearchException;
 import fr.epita.iam.exceptions.UserCreationException;
 import fr.epita.iam.exceptions.UserDeletionException;
@@ -19,7 +20,7 @@ import fr.epita.iam.services.dao.UserDAO;
 class TestUserDAO {
 
 	@Test
-	void testCreateAndSearch() throws UserCreationException, IdentityCreationException, IdentitySearchException, UserSearchException, UserDeletionException {
+	void testCreateAndSearch() throws UserCreationException, IdentityCreationException, IdentitySearchException, UserSearchException, UserDeletionException, IdentityDeletionException {
 		//Given
 		final User user = new User();
 		user.setPassword("test");

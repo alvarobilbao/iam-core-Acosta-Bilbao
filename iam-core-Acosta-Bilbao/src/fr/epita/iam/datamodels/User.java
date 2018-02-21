@@ -4,7 +4,7 @@ public class User {
 
 	private String username;
 	private String password;
-	private int Id;
+	private int id;
 	private Identity identity;
 	
 	public User() {
@@ -30,10 +30,10 @@ public class User {
 		this.password = password;
 	}
 	public int getId() {
-		return Id;
+		return id;
 	}
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 	public Identity getIdentity() {
 		return identity;
@@ -41,55 +41,41 @@ public class User {
 	public void setIdentity(Identity identity) {
 		this.identity = identity;
 	}
-	// TODO check that all cases are handled, add conditions for 
-	//the remaining cases
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((identity == null) ? 0 : identity.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
-		
-		if(this == obj) return true;
-		
-		if(!(obj instanceof User) || obj == null) return false;
-		
-		User other = (User) obj;
-		
-		if(other.Id != this.Id) return false;
-		
-		if(other.username != null && other.password != null && other.identity != null) {
-				return  other.username.equals(this.username) && 
-						other.password.equals(this.password) && 
-						other.identity.equals(this.identity);
-		} else if ((other.username == null && this.username == null) && 
-					other.password != null && other.identity != null) {
-			return other.password.equals(this.password) && 
-					other.identity.equals(this.identity);
-		} else if ((other.password == null && this.password == null) && 
-				other.username != null && other.identity != null) {
-			return other.username.equals(this.username) && 
-					other.identity.equals(this.identity);
-		} else if ((other.identity == null && this.identity == null) && 
-				other.username != null && other.password != null) {
-			return other.username.equals(this.username) && 
-					other.password.equals(this.password);
-		} else if ((other.username == null && this.username == null) && 
-				(other.password == null && this.password == null) &&
-				other.identity != null) {
-			return other.identity.equals(this.identity);
-		} else if ((other.username == null && this.username == null) && 
-				(other.identity == null && this.identity == null) &&
-				other.password != null) {
-			return other.password.equals(this.password);
-		} else if ((other.identity == null && this.identity == null) && 
-				(other.password == null && this.password == null) &&
-				other.username != null) {
-			return other.username.equals(this.username);
-		} else if ((other.username == null && this.username == null) && 
-				(other.password == null && this.password == null) &&
-				(other.identity == null && this.identity == null) ) {
+		if (this == obj)
 			return true;
-		}
-		
-		return false;
-		
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (identity == null) {
+			if (other.identity != null)
+				return false;
+		} else if (!identity.equals(other.identity))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
 	}
 	
 }

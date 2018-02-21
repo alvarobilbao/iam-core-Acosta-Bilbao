@@ -1,14 +1,12 @@
 package fr.epita.iam.views;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import fr.epita.iam.datamodels.Identity;
 import fr.epita.iam.exceptions.IdentityCreationException;
 import fr.epita.iam.services.dao.IdentityDAO;
+import fr.epita.utils.logger.Logger;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -18,12 +16,18 @@ import java.awt.event.ActionEvent;
 
 public class Create extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField txtUidCreate;
 	private JTextField txtDisplayNameCreate;
 	private JTextField txtEmailCreate;
 	private JLabel lblUid;
 	private JLabel lblDisplayName;
 	private JLabel lblEmail;
+	
+	private static final Logger LOGGER = new Logger(Create.class);
 
 	/**
 	 * Create the frame.
@@ -91,9 +95,9 @@ public class Create extends JPanel {
 				try {
 					dao.create(id1);	
 				} catch (IdentityCreationException e1) {
-					// TODO Auto-generated catch block
-					
-					e1.printStackTrace();
+					LOGGER.error("There was an error while creating the Identity");
+					PopUp.popUpMessage("There was an error while trying to create the Identity, Please try again");
+
 				}			
 				txtUidCreate.setText(null);
 				txtDisplayNameCreate.setText(null);

@@ -21,32 +21,41 @@ import fr.epita.utils.logger.Logger;
 public class UserDAO {
 
 private static final Logger LOGGER = new Logger(IdentityDAO.class);
+private static final String CLOSING_THE_PREPARED_STATEMENT_ERROR = "There was an sql error while closing the prepared statement";
+private static final String CLOSING_THE_DB_CONNECTION_ERROR = "There was an sql error while closing the DB connection";
+private static final String SQL_CLOSING_RESULTSET_ERROR = "There was an sql error while closing the result set";
 	
-	public void create(User user) throws  UserCreationException, IdentityCreationException {
-
+	public void create(User user) throws  UserCreationException, IdentityDeletionException {
 		LOGGER.info("Creating the User: " + user);
 		Connection connection = null;
 		IdentityDAO identityDao = new IdentityDAO();
-		identityDao.create(user.getIdentity());
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
+			identityDao.create(user.getIdentity());
 			connection = DBConnection.getConnection();
 			// the PreparedStatement.RETURN_GENERATED_KEYS says that generated keys should be retrievable after execution
-			final PreparedStatement pstmt = connection.
+			pstmt = connection.
 					prepareStatement("INSERT INTO USERS(USERNAME, PASSWORD, IDENTITY_ID) VALUES (?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, user.getUsername());
 			pstmt.setString(2, user.getPassword());
 			pstmt.setInt(3, user.getIdentity().getId());
 			pstmt.execute();
-			ResultSet rs = pstmt.getGeneratedKeys();
+			rs = pstmt.getGeneratedKeys();
 			//As we are only handling 1 insertion, if the insertion is made, it will return the auto generated id, so we will set it to the identity
 			while (rs.next()) {
 				// this sets the dbID 
 				user.setId(rs.getInt(1));
 			}
 			pstmt.close();
-		} catch (final Exception e) {
-			// TODO: handle exception
+		} catch (final IdentityCreationException ice) {
+			LOGGER.error("error while creating the user identity " + user + "got that error " + ice.getMessage());
+			throw new UserCreationException(ice, user);
+		}
+		catch (final Exception e) {
 			LOGGER.error("error while creating the user " + user + "got that error " + e.getMessage());
+			LOGGER.info("deleting the identity from the unsuccesfully created user");
+			identityDao.delete(user.getIdentity());
 			throw new UserCreationException(e, user);
 
 		} finally {
@@ -54,9 +63,24 @@ private static final Logger LOGGER = new Logger(IdentityDAO.class);
 				try {
 					connection.close();
 				} catch (final SQLException e) {
-					// can do nothing here, except logging maybe?
+					LOGGER.error(CLOSING_THE_DB_CONNECTION_ERROR);
 				}
 			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (final SQLException e) {
+					LOGGER.error(CLOSING_THE_PREPARED_STATEMENT_ERROR);
+				}
+			}
+			if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException e) {
+						LOGGER.error(SQL_CLOSING_RESULTSET_ERROR);
+					}
+			}
+
 		}
 	}
 	
@@ -71,15 +95,17 @@ private static final Logger LOGGER = new Logger(IdentityDAO.class);
 		final List<User> results = new ArrayList<>();
 		Connection connection = null;
 		final IdentityDAO identityDao = new IdentityDAO();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
 			connection = DBConnection.getConnection();
-			final PreparedStatement pstmt = connection
+			pstmt = connection
 					.prepareStatement("SELECT USERNAME, PASSWORD, USER_ID, IDENTITY_ID FROM USERS " 
 			+ "WHERE USERNAME = ? AND PASSWORD = ?");
 
 			pstmt.setString(1, criteria.getUsername());
 			pstmt.setString(2, criteria.getPassword());
-			final ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
 				final User currentUser = new User();
@@ -91,7 +117,6 @@ private static final Logger LOGGER = new Logger(IdentityDAO.class);
 				currentUser.setIdentity(userIdentity);
 				results.add(currentUser);
 			}
-			rs.close();
 		} catch (ClassNotFoundException | SQLException e) {
 			LOGGER.error("error while performing search", e);
 			throw new UserSearchException(e, criteria);
@@ -100,9 +125,24 @@ private static final Logger LOGGER = new Logger(IdentityDAO.class);
 				try {
 					connection.close();
 				} catch (final SQLException e) {
-					// can do nothing here, except logging maybe?
+					LOGGER.error(CLOSING_THE_DB_CONNECTION_ERROR);
 				}
 			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (final SQLException e) {
+					LOGGER.error(CLOSING_THE_PREPARED_STATEMENT_ERROR);
+				}
+			}
+			if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException e) {
+						LOGGER.error(SQL_CLOSING_RESULTSET_ERROR);
+					}
+			}
+
 		}
 
 		return results;
@@ -111,24 +151,30 @@ private static final Logger LOGGER = new Logger(IdentityDAO.class);
 	public void delete(User user) throws UserDeletionException {
 		LOGGER.info("Deleting the identity: " + user);
 		Connection connection = null;
-		// TODO: Implement delete for the GUI behavior
+		PreparedStatement pstmt = null;
 		//Delete with ID only
 		try {
 			connection = DBConnection.getConnection();
-			final PreparedStatement pstmt = connection
+			pstmt = connection
 					.prepareStatement("DELETE FROM IDENTITIES where ID = ?");
             pstmt.setInt(1, user.getId());
             pstmt.execute();
-            pstmt.close();
         } catch (final Exception e) {
         	LOGGER.error("error while deleting the identity: " + user + "got the error: " + e.getMessage());
 			throw new UserDeletionException(e, user);
         } finally {
-        	if (connection != null) {
+			if (connection != null) {
 				try {
 					connection.close();
 				} catch (final SQLException e) {
-					// can do nothing here, except logging maybe?
+					LOGGER.error(CLOSING_THE_DB_CONNECTION_ERROR);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (final SQLException e) {
+					LOGGER.error(CLOSING_THE_PREPARED_STATEMENT_ERROR);
 				}
 			}
         }

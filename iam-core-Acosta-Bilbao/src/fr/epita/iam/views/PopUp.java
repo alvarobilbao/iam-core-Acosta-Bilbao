@@ -5,6 +5,10 @@ import javax.swing.JOptionPane;
 public class PopUp {
 	
 
+	private PopUp() {
+		
+	}
+	
 	/**
 	 * @param infoMessage
 	 */

@@ -9,8 +9,6 @@ import fr.epita.iam.controllers.LoginController;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -51,11 +49,6 @@ public class Login extends JPanel {
 					MainFrame main = MainFrame.getMainFrame();
 					main.setViewTo(MainFrame.CREATE_IDENTITY_VIEW);
 				}
-			}
-		});
-		signInButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
 			}
 		});
 		signInButton.setBounds(75, 153, 89, 23);

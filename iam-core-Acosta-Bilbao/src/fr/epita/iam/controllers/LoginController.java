@@ -1,15 +1,16 @@
 package fr.epita.iam.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import fr.epita.iam.datamodels.User;
 import fr.epita.iam.exceptions.IdentitySearchException;
 import fr.epita.iam.exceptions.UserSearchException;
 import fr.epita.iam.services.dao.UserDAO;
+import fr.epita.iam.views.PopUp;
+import fr.epita.utils.logger.Logger;
 
 public class LoginController {
-	
+	private static final Logger LOGGER = new Logger(LoginController.class);
 	private LoginController () {
 		
 	}
@@ -27,14 +28,14 @@ public class LoginController {
 				isAuthenticated = true;
 			}
 		} catch (UserSearchException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error("There was an error while searching for the user");
+			PopUp.popUpMessage("There was an error on the authentication process, please try again");
 		} catch (IdentitySearchException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			return isAuthenticated;
-		}
+			LOGGER.error("There was an error while searching for the user's Identity");
+			PopUp.popUpMessage("There was an error on the authentication process, please try again");
+		}	
+		return isAuthenticated;
+		
 	}
 
 }

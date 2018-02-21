@@ -16,7 +16,7 @@ public class SignUpController {
 			String passConf, String email) {
 		
 		if(!password.equals(passConf)) {
-			//TODO show error popup
+			PopUp.popUpMessage("The password and the confirm password fields have different values");
 		}
 		else {
 			try {
@@ -36,8 +36,7 @@ public class SignUpController {
 				// Show create success popup
 				PopUp.popUpMessage("User created Succesfully");
 			} catch (Exception e) {
-				//TODO handle create User exception
-				
+				PopUp.popUpMessage("There was an error creating the User");
 			}
 		}
 		

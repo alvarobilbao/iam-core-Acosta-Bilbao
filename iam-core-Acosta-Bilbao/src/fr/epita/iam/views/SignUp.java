@@ -1,9 +1,5 @@
 package fr.epita.iam.views;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
@@ -18,10 +14,14 @@ import java.awt.event.MouseEvent;
 
 public class SignUp extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField usernameField;
 	private JPasswordField passwordField;
 	private JPasswordField confirmPasswordField;
-	private JTextField DispNameField;
+	private JTextField dispNameField;
 	private JTextField uidField;
 	private JTextField emailField;
 
@@ -65,7 +65,7 @@ public class SignUp extends JPanel {
 				String password = new String(passwordField.getPassword());
 				String passConf = new String(confirmPasswordField.getPassword());
 				String uid = uidField.getText();
-				String displayName = DispNameField.getText();
+				String displayName = dispNameField.getText();
 				String email = emailField.getText();
 				SignUpController.onCreateUserBtnClick(username, password, uid, displayName, passConf, email);
 			}
@@ -99,10 +99,10 @@ public class SignUp extends JPanel {
 		confirmPasswordField.setBounds(197, 80, 154, 20);
 		this.add(confirmPasswordField);
 		
-		DispNameField = new JTextField();
-		DispNameField.setColumns(10);
-		DispNameField.setBounds(197, 110, 154, 20);
-		this.add(DispNameField);
+		dispNameField = new JTextField();
+		dispNameField.setColumns(10);
+		dispNameField.setBounds(197, 110, 154, 20);
+		this.add(dispNameField);
 		
 		uidField = new JTextField();
 		uidField.setColumns(10);

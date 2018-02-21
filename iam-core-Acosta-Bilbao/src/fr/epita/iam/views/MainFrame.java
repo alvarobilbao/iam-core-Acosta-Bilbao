@@ -1,14 +1,14 @@
 package fr.epita.iam.views;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 public class MainFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	public static final int LOGIN_VIEW = 1;
 	public static final int SIGNUP_VIEW = 2;
@@ -36,9 +36,6 @@ public class MainFrame extends JFrame {
 	public void setViewTo(int view) {
 		JPanel selectedView = null;
 		switch(view) {
-		case LOGIN_VIEW:
-			selectedView = new Login();
-			break;
 		case SIGNUP_VIEW:
 			selectedView = new SignUp();
 			break;
@@ -48,12 +45,12 @@ public class MainFrame extends JFrame {
 		case MANAGE_IDENTITY_VIEW:
 			selectedView = new SearchDeleteUpdate();
 			break;
+		default: 
+			selectedView = new Login();
+			break;
 		}
-		if(selectedView != null) {
-			setContentPane(selectedView);
-			revalidate();	
-		}
-		
+		setContentPane(selectedView);
+		revalidate();	
 	}
 
 }

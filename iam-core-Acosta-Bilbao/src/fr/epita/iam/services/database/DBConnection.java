@@ -32,8 +32,7 @@ public class DBConnection {
 
 		Class.forName("org.apache.derby.jdbc.ClientDriver");
 
-		final Connection connection = DriverManager.getConnection(url, username, password);
-		return connection;
+		return DriverManager.getConnection(url, username, password);
 	}
 	
 }
