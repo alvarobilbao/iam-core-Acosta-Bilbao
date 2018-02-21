@@ -10,7 +10,7 @@ import fr.epita.utils.services.configuration.ConfigurationService;
 
 public class Logger {
 
-	private static final String logPath = ConfigurationService.getInstance().getConfigurationValue("log.path");
+	private static final String LOGPATH = ConfigurationService.getInstance().getConfigurationValue("log.path");
 	private static PrintWriter pw;
 
 	private static final String ERROR = "ERROR";
@@ -21,7 +21,7 @@ public class Logger {
 
 	static {
 		try {
-			final File file = new File(logPath);
+			final File file = new File(LOGPATH);
 			if (!file.exists()) {
 				file.getParentFile().mkdirs();
 				file.createNewFile();
@@ -57,8 +57,8 @@ public class Logger {
 		printMessage(message, TRACE);
 	}
 
-	private void printMessage(String message, String Level) {
-		final String completeMessage = getTimeStamp() + " - " + Level + " - " + cls.getCanonicalName() + " " + message;
+	private void printMessage(String message, String level) {
+		final String completeMessage = getTimeStamp() + " - " + level + " - " + cls.getCanonicalName() + " " + message;
 		pw.println(completeMessage);
 		pw.flush();
 	}

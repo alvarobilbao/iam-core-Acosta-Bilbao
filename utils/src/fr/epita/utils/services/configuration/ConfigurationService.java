@@ -5,19 +5,21 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import fr.epita.utils.logger.Logger;
+
 public class ConfigurationService {
 
 	private Properties properties;
 
 	private static ConfigurationService instance;
+	private static final Logger LOGGER = new Logger(ConfigurationService.class);
 
 	private ConfigurationService(String filePathToConfiguration) {
 		try {
 			properties = new Properties();
 			properties.load(new FileInputStream(new File(filePathToConfiguration)));
 		} catch (final IOException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
+			LOGGER.error("There was an IOException while loading the configuration File");
 		}
 	}
 

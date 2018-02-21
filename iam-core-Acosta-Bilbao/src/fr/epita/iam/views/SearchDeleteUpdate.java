@@ -111,8 +111,7 @@ public class SearchDeleteUpdate extends JPanel {
 				try {
 					listModel.addAll(dao.searchAll(id1));
 				} catch (IdentitySearchException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					PopUp.popUpMessage("There was problem while searching for Identities, please try again");
 				}
 				Identity idAux;
 				for (Iterator<Identity> iterator = listModel.iterator(); iterator.hasNext();) {
@@ -157,13 +156,11 @@ public class SearchDeleteUpdate extends JPanel {
         lstSearch.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
-                	if (!lstSearch.isSelectionEmpty()) {
-                        txtUidUpdate.setText(listModel.get(lstSearch.getSelectedIndex()).getUid());
-                        txtDisplayNameUpdate.setText(listModel.get(lstSearch.getSelectedIndex()).getDisplayName());
-                        txtEmailUpdate.setText(listModel.get(lstSearch.getSelectedIndex()).getEmail());
-    				}
-                }
+             	if (!e.getValueIsAdjusting() && !lstSearch.isSelectionEmpty()) {
+                    txtUidUpdate.setText(listModel.get(lstSearch.getSelectedIndex()).getUid());
+                    txtDisplayNameUpdate.setText(listModel.get(lstSearch.getSelectedIndex()).getDisplayName());
+                    txtEmailUpdate.setText(listModel.get(lstSearch.getSelectedIndex()).getEmail());
+    			}              
             }
         });
  
@@ -207,8 +204,7 @@ public class SearchDeleteUpdate extends JPanel {
 					dao.delete(dao.searchById(listModel.get(lstSearch.getSelectedIndex()).getId()));
 					idList.removeElement(idList.getElementAt(lstSearch.getSelectedIndex()));
 				} catch (IdentityDeletionException | IdentitySearchException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					PopUp.popUpMessage("There was problem while deleting the selected Identity");
 				}
 				if (idList.isEmpty()) {
                     txtUidUpdate.setEnabled(false);
@@ -257,8 +253,7 @@ public class SearchDeleteUpdate extends JPanel {
 				try {
 					dao.update(id1);	
 				} catch (IdentityUpdateException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					PopUp.popUpMessage("There was problem while updating the selected Identity");
 				}
 				btnSearchId.doClick();
 			}
