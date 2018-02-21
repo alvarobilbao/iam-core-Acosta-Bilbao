@@ -214,7 +214,10 @@ public class SearchDeleteUpdate extends JPanel {
                     txtUidUpdate.setEnabled(false);
                     txtDisplayNameUpdate.setEnabled(false);
                     txtEmailUpdate.setEnabled(false);
+				} else {
+					btnSearchId.doClick();
 				}
+				
 			}
 		});
 		btnDelete.setBounds(197, 291, 125, 23);
