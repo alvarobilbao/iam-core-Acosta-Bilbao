@@ -1,5 +1,13 @@
 package fr.epita.iam.datamodels;
 
+/**
+ * <h3>Description</h3>
+ * <p>This class allows to create an User for persisting it later if needed, it has parameters
+ * as username, password, Identity and an int id which should be set with the DB index only</p>
+ * 
+ *
+ * @author Stéfano Acosta - Álvaro Bilbao
+ */
 public class User {
 
 	private String username;
@@ -11,6 +19,10 @@ public class User {
 		this.identity = new Identity();
 	}
 	
+	/**
+	 * @param username
+	 * @param password
+	 */
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;

@@ -5,8 +5,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import fr.epita.utils.services.configuration.ConfigurationService;
+import fr.epita.iam.datamodels.Identity;
 import fr.epita.utils.logger.Logger;
 
+/**
+ * <h3>Description</h3>
+ * <p>This class is used to generate a connection with the Database, with the method:</p>
+ * <p>{@link #getConnection() Connection getConnection()}
+ * </p>
+ *
+ *
+ * @author Stéfano Acosta - Álvaro Bilbao
+ */
 public class DBConnection {
 
 	private static final Logger LOGGER = new Logger(DBConnection.class);
@@ -21,6 +31,11 @@ public class DBConnection {
 		
 	}
 	
+	/**
+	 * @return A connection to the Url
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 
 		LOGGER.trace("Getting a DB connection");

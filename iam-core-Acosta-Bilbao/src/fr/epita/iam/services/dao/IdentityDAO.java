@@ -15,6 +15,25 @@ import fr.epita.iam.exceptions.IdentityUpdateException;
 import fr.epita.iam.services.database.DBConnection;
 import fr.epita.utils.logger.Logger;
 
+/**
+ * <h3>Description</h3>
+ * <p>This IdentityDAO class is used to manage the identities persisted in the database 
+ * (more concretely: Create, Search, Delete and Update operations).
+ * IdentityDAO interacts with the DataBase and has four different public methods:</p>
+ * <p>{@link #create(Identity) void create(Identity identity)}
+ * </p>
+ * <p>{@link #delete(Identity) void delete(Identity identity)}
+ * </p>
+ * <p>{@link #searchAll(Identity) List Identity searchAll(Identity criteria)}
+ * </p>
+ * <p>{@link #update(Identity) void update(Identity identity)}
+ * </p>
+ * <p>{@link #searchById(int) Identity searchById(int id)}
+ * </p>
+ *
+ *
+ * @author Stéfano Acosta - Álvaro Bilbao
+ */
 public class IdentityDAO {
 
 	private static final String CLOSING_THE_PREPARED_STATEMENT_ERROR = "There was an sql error while closing the prepared statement";
@@ -22,6 +41,14 @@ public class IdentityDAO {
 	private static final String SQL_CLOSING_RESULTSET_ERROR = "There was an sql error while closing the result set";
 	private static final Logger LOGGER = new Logger(IdentityDAO.class);
 	
+	/**
+	 * <h3>Description</h3>
+	 * <p>Creates an identity and persist it in a database, the identity can be null, partially
+	 * set or completely set. 
+	 * </p>
+	 * @param identity
+	 * @throws IdentityCreationException
+	 */
 	public void create(Identity identity) throws IdentityCreationException {
 
 		LOGGER.info("Creating the identity: " + identity);
@@ -74,6 +101,15 @@ public class IdentityDAO {
 		}
 	}
 	
+	/**
+	 * <h3>Description</h3>
+	 * <p>Deletes an identity from a database by using the Id from the identity.
+	 * In order to be able to use the Id field identity.getId(), a search should be
+	 * done first to retrieve the Id index from the databases.
+	 * </p>
+	 * @param identity
+	 * @throws IdentityDeletionException
+	 */
 	public void delete(Identity identity) throws IdentityDeletionException {
 		LOGGER.info("Deleting the identity: " + identity);
 		Connection connection = null;
@@ -108,9 +144,12 @@ public class IdentityDAO {
 	}
 	
 	/**
-	 * Read all the identities from the database
-	 * @return
-	 * @throws SQLException
+	 * <h3>Description</h3>
+	 * <p>Read all the identities from the database, in returns a List of Identities. 
+	 * </p>
+	 * 
+	 * @return results , as a Identity List with Identities with Ids set.
+	 * @throws IdentitySearchException
 	 */
 	public List<Identity> searchAll(Identity criteria) throws IdentitySearchException {
 		
@@ -173,6 +212,15 @@ public class IdentityDAO {
 		return results;
 	}
 	
+	/**
+	 * <h3>Description</h3>
+	 * <p>Update a given identity in the database. 
+	 * In order to be able to use the Id field identity.getId(), a search should be
+	 * done first to retrieve the Id index from the databases.
+	 * </p>
+	 * @param identity
+	 * @throws IdentityUpdateException
+	 */
 	public void update(Identity identity) throws IdentityUpdateException {
 		LOGGER.info("Update the identity: " + identity);
 		Connection connection = null;
@@ -212,6 +260,16 @@ public class IdentityDAO {
 		}
 	}
 
+	/**
+	 * <h3>Description</h3>
+	 * <p>Read an identity from the database by looking by
+	 * Id field identity.getId(), so a searchAll shall be ran first to
+	 * obtain the Id.
+	 * </p>
+	 * @param id integer field
+	 * @return identity
+	 * @throws IdentitySearchException
+	 */
 	public Identity searchById(int id) throws IdentitySearchException {
 		Connection connection = null;
 		final Identity foundIdentity = new Identity();

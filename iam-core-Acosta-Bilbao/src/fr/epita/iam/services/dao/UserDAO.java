@@ -18,6 +18,20 @@ import fr.epita.iam.exceptions.UserSearchException;
 import fr.epita.iam.services.database.DBConnection;
 import fr.epita.utils.logger.Logger;
 
+/**
+ * <h3>Description</h3>
+ * <p>This UserDAO class is used to manage the users persisted in the database 
+ * (more concretely: Create, Search, Delete and Update operations).
+ * UserDAO interacts with the DataBase and has four different public methods:</p>
+ * <p>{@link #create(User) void create(Identity identity)}
+ * </p>
+ * <p>{@link #search(User) List &ltUser&gt search(User criteria)}
+ * </p>
+ * <p>{@link #delete(Identity) void delete(Identity identity)}
+ * </p>
+ *
+ * @author Stéfano Acosta - Álvaro Bilbao
+ */
 public class UserDAO {
 
 private static final Logger LOGGER = new Logger(IdentityDAO.class);
@@ -25,6 +39,16 @@ private static final String CLOSING_THE_PREPARED_STATEMENT_ERROR = "There was an
 private static final String CLOSING_THE_DB_CONNECTION_ERROR = "There was an sql error while closing the DB connection";
 private static final String SQL_CLOSING_RESULTSET_ERROR = "There was an sql error while closing the result set";
 	
+	
+	/**
+	 * <h3>Description</h3>
+	 * <p>Creates a user and persist it in a database
+	 * partially set or completely set but not null. 
+	 * </p>
+	 * @param user
+	 * @throws UserCreationException
+	 * @throws IdentityDeletionException
+	 */
 	public void create(User user) throws  UserCreationException, IdentityDeletionException {
 		LOGGER.info("Creating the User: " + user);
 		Connection connection = null;
@@ -85,7 +109,10 @@ private static final String SQL_CLOSING_RESULTSET_ERROR = "There was an sql erro
 	}
 	
 	/**
-	 * Read an user from the database
+	 * <h3>Description</h3>
+	 * <p>Read an user from the database
+	 * </p>
+	 * 
 	 * @return
 	 * @throws IdentitySearchException 
 	 * @throws SQLException
@@ -148,6 +175,15 @@ private static final String SQL_CLOSING_RESULTSET_ERROR = "There was an sql erro
 		return results;
 	}
 
+	/**
+	 * <h3>Description</h3>
+	 * <p>Deletes a user from a database by using the Id from the user in the DB.
+	 * In order to be able to use the Id field user.getId(), a search should be
+	 * done first to retrieve the Id index from the databases.
+	 * </p>
+	 * @param user User Class type
+	 * @throws UserDeletionException
+	 */
 	public void delete(User user) throws UserDeletionException {
 		LOGGER.info("Deleting the identity: " + user);
 		Connection connection = null;

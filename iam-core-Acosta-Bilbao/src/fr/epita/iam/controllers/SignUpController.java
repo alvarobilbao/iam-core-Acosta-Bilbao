@@ -6,12 +6,29 @@ import fr.epita.iam.services.dao.UserDAO;
 import fr.epita.iam.views.MainFrame;
 import fr.epita.iam.views.PopUp;
 
+/**
+ * <h3>Description</h3>
+ * <p>Manages the control of the SignUp UI for user with identity creation and
+ *  for password confirmation at user creation.
+ * Uses an empty constructor.
+ * </p>
+ *
+ * @author Stéfano Acosta - Álvaro Bilbao
+ */
 public class SignUpController {
 
 	private SignUpController () {
 		
 	}
 	
+	/**
+	 * @param username
+	 * @param password
+	 * @param uid
+	 * @param displayName
+	 * @param passConf
+	 * @param email
+	 */
 	public static void onCreateUserBtnClick(String username, String password, String uid, String displayName,
 			String passConf, String email) {
 		

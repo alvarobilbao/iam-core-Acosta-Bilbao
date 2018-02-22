@@ -7,6 +7,12 @@ import java.util.Properties;
 
 import fr.epita.utils.logger.Logger;
 
+/**
+ * <h3>Description</h3>
+ * <p>Used to get the configuration file for avoid hard-coding it inside the project.</p>
+ *
+ * @author Stéfano Acosta - Álvaro Bilbao
+ */
 public class ConfigurationService {
 
 	private Properties properties;
@@ -14,6 +20,9 @@ public class ConfigurationService {
 	private static ConfigurationService instance;
 	private static final Logger LOGGER = new Logger(ConfigurationService.class);
 
+	/**
+	 * @param filePathToConfiguration
+	 */
 	private ConfigurationService(String filePathToConfiguration) {
 		try {
 			properties = new Properties();
@@ -23,6 +32,9 @@ public class ConfigurationService {
 		}
 	}
 
+	/**
+	 * @return instance
+	 */
 	public static ConfigurationService getInstance() {
 		if (instance == null) {
 			instance = new ConfigurationService(System.getProperty("conf"));
@@ -30,6 +42,10 @@ public class ConfigurationService {
 		return instance;
 	}
 
+	/**
+	 * @param propertyKey
+	 * @return String configValue
+	 */
 	public String getConfigurationValue(String propertyKey) {
 		return properties.getProperty(propertyKey);
 	}

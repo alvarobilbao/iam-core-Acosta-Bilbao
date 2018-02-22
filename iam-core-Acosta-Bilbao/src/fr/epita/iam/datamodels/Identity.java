@@ -2,12 +2,8 @@ package fr.epita.iam.datamodels;
 
 /**
  * <h3>Description</h3>
- * <p>This class allows to ...</p>
- *
- * <h3>Usage</h3>
- * <p>This class is used as follows: </p>
- *   <pre><code>${type_name} instance = new ${type_name}();</code></pre>
- *
+ * <p>This class allows to create an Identity for persisting it later if needed, it has parameters
+ * as uid, email, and displayName which can be set, and an int id which should be set with the DB index only</p>
  * 
  *
  * @author Stéfano Acosta - Álvaro Bilbao

@@ -1,0 +1,9 @@
+fr.epita.iam.controllers
+fr.epita.iam.controllers.test
+fr.epita.iam.datamodels
+fr.epita.iam.exceptions
+fr.epita.iam.launcher
+fr.epita.iam.services.dao
+fr.epita.iam.services.database
+fr.epita.iam.services.test
+fr.epita.iam.views
