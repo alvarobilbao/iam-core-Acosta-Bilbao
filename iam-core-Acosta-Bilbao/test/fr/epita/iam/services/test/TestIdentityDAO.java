@@ -31,13 +31,6 @@ public class TestIdentityDAO {
 		// Then
 		final List<Identity> resultList = dao.searchAll(id1);
 		assertTrue("Couldn't find the identity"+id1,resultList.contains(id1));
-
-//		if (resultList.contains(id1)) {
-//			System.out.println("success");
-//			System.out.println(resultList.get(resultList.indexOf(id1)));
-//		} else {
-//			System.out.println("failure");
-//		}
 				
 	}
 	
@@ -89,9 +82,5 @@ public class TestIdentityDAO {
 		assertTrue("Index mismatch problem", searchedIdentity.getId() == resultList.get(resultList.indexOf(id1)).getId());
 		//System.out.println(searchedIdentity);
 		dao.delete(searchedIdentity);
-
-		//TODO: Implement Rule or correct assertion
-		//assertFalse("Couldn't erase the identity"+searchedIdentity,dao.searchById(identityId));
-
 	}
 }

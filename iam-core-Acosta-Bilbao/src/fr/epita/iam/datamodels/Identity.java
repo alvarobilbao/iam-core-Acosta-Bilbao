@@ -5,13 +5,13 @@ package fr.epita.iam.datamodels;
  * <p>This class allows to ...</p>
  *
  * <h3>Usage</h3>
- * <p>This class is used as follows:
+ * <p>This class is used as follows: </p>
  *   <pre><code>${type_name} instance = new ${type_name}();</code></pre>
- * </p>
+ *
  * 
  *
  * @author Stéfano Acosta - Álvaro Bilbao
- * ${tags}
+ *
  */
 public class Identity {
 
@@ -22,13 +22,14 @@ public class Identity {
 	
 	
 	/**
+	 * <h5>Description</h5>
 	 * Non-empty Constructor for the Class Identity, 3 Strings parameters must be given 
 	 * or be declared as null, at least one parameter should be different than null otherwise
 	 * the suggested Constructor for Identity is the empty Identity() Constructor.
 	 * 
-	 * @param uid Should be a String containing numbers only
-	 * @param email
-	 * @param displayName
+	 * @param uid Should be a String containing numbers only.
+	 * @param email String variable, no restrictions.
+	 * @param displayName String variable, accepts spaces, numbers and symbols.
 	 */
 	public Identity(String uid, String email, String displayName) {
 		this.uid = uid;
@@ -37,6 +38,7 @@ public class Identity {
 	}
 	
 	/**
+	 * <h5>Description</h5>
 	 * Default empty constructor for Class Identity.
 	 */
 	public Identity() {

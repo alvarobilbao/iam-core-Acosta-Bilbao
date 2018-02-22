@@ -3,6 +3,25 @@ package fr.epita.iam.views;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+
+/**
+ * <h3>Description</h3>
+ * <p>This class allows to manage the different views of the GUI, it's also responsible for 
+ * resizing the windows as they change from window to window. </p>
+ *
+ * <h3>Usage</h3>
+ * <p>This class is used as follows: </p>
+ *   <pre><code> MainFrame instance =  MainFrame.getMainFrame();</code></pre>
+ *
+ * <h3>SonarLint warning Suppression</h3>
+ * <p>It is not possible to reduce the depth for this JFrame class, hence, the warning is suppressed.
+ * To suppress the warning the following code should be included before the MainFrame class.
+ * @java.lang.SuppressWarnings("squid:MaximumInheritanceDepth").</p>
+ * 
+ *
+ * @author Stéfano Acosta - Álvaro Bilbao
+ *
+ */
 public class MainFrame extends JFrame {
 
 	/**
