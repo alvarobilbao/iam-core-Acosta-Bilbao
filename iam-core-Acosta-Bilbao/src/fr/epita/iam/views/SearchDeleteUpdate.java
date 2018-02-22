@@ -159,6 +159,7 @@ public class SearchDeleteUpdate extends JPanel {
 		txtEmailUpdate.setBounds(534, 238, 115, 20);
 		txtEmailUpdate.setMaximumSize(new Dimension(200000, 200000));
 		txtEmailUpdate.setColumns(10);
+		JButton btnUpdate = new JButton("Update");
 		
 		JList<String> lstSearch = new JList<>(idList);
 		lstSearch.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -166,6 +167,7 @@ public class SearchDeleteUpdate extends JPanel {
             @Override
             public void valueChanged(ListSelectionEvent e) {
              	if (!e.getValueIsAdjusting() && !lstSearch.isSelectionEmpty()) {
+             		btnUpdate.setEnabled(true);
                     txtUidUpdate.setText(listModel.get(lstSearch.getSelectedIndex()).getUid());
                     txtDisplayNameUpdate.setText(listModel.get(lstSearch.getSelectedIndex()).getDisplayName());
                     txtEmailUpdate.setText(listModel.get(lstSearch.getSelectedIndex()).getEmail());
@@ -222,13 +224,16 @@ public class SearchDeleteUpdate extends JPanel {
 				} else {
 					btnSearchId.doClick();
 				}
-				
+				btnUpdate.setEnabled(false);
+				txtUidUpdate.setText(null);
+                txtDisplayNameUpdate.setText(null);
+                txtEmailUpdate.setText(null);
 			}
 		});
 		btnDelete.setBounds(197, 291, 125, 23);
 		this.add(btnDelete);
 		
-		JButton btnUpdate = new JButton("Update");
+		
 
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -265,6 +270,10 @@ public class SearchDeleteUpdate extends JPanel {
 					PopUp.popUpMessage("There was problem while updating the selected Identity");
 				}
 				btnSearchId.doClick();
+				btnUpdate.setEnabled(false);
+				txtUidUpdate.setText(null);
+                txtDisplayNameUpdate.setText(null);
+                txtEmailUpdate.setText(null);
 			}
 		});
 		
