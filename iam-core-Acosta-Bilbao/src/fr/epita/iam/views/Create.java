@@ -14,11 +14,19 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
+/**
+ * <h3>Description</h3>
+ * <p>This JPanel class is used to create the identities and persist them in the database. </p>
+ *
+ * <h3>Usage</h3>
+ * <p>This class is used as follows: </p>
+ *   <pre><code> JPanel instance = new Create();</code></pre>
+ *
+ * @author Stéfano Acosta - Álvaro Bilbao
+ */
 public class Create extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField txtUidCreate;
 	private JTextField txtDisplayNameCreate;

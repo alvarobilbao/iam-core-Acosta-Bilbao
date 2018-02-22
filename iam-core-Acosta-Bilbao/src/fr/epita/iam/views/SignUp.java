@@ -12,11 +12,18 @@ import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * <h3>Description</h3>
+ * <p>This JPanel class is used to create Users with an identity and persist it in the database. </p>
+ *
+ * <h3>Usage</h3>
+ * <p>This class is used as follows: </p>
+ *   <pre><code> JPanel instance = new SignUp();</code></pre>
+ *
+ * @author Stéfano Acosta - Álvaro Bilbao
+ */
 public class SignUp extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField usernameField;
 	private JPasswordField passwordField;

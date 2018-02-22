@@ -15,8 +15,8 @@ import javax.swing.JPanel;
  *
  * <h3>SonarLint warning Suppression</h3>
  * <p>It is not possible to reduce the depth for this JFrame class, hence, the warning is suppressed.
- * To suppress the warning the following code should be included before the MainFrame class.
- * @java.lang.SuppressWarnings("squid:MaximumInheritanceDepth").</p>
+ * To suppress the warning the following code should be included before the MainFrame class:</p>
+ * <p>@java.lang.SuppressWarnings("squid:MaximumInheritanceDepth").</p>
  * 
  *
  * @author Stéfano Acosta - Álvaro Bilbao
@@ -36,7 +36,9 @@ public class MainFrame extends JFrame {
 	
 	private static MainFrame instance;
 	/**
-	 * Create the frame.
+	 * <h5>Description</h5>
+	 * <p> MainFrame class default constructor, creates the frame.</p>
+	 * 
 	 */
 	private MainFrame() {
 		setTitle("IamCore Java Project - Acosta - Bilbao");
@@ -46,6 +48,14 @@ public class MainFrame extends JFrame {
 		setContentPane(contentPane);
 	}
 	
+	/**
+	 * <h5>Description</h5>
+	 * <p>Non-empty Constructor for the Class Identity, 3 Strings parameters must be given 
+	 * or be declared as null, at least one parameter should be different than null otherwise
+	 * the suggested Constructor for Identity is the empty Identity() Constructor.</p>
+	 * 
+	 * @return MainFrame instance , a new Object instance of MainFrame class, if the instance was null, if not it returns the same instance.
+	 */
 	public static MainFrame getMainFrame() {
 		if (instance == null) {
 			instance = new MainFrame();
@@ -53,6 +63,11 @@ public class MainFrame extends JFrame {
 		return instance;
 	}
 	
+	/**
+	 * <h5>Description</h5>
+	 * <p>Public void method, sets the current window panel to the selected one provided as an integer parameter.</p>
+	 * @param view , an integer parameter.
+	 */
 	public void setViewTo(int view) {
 		JPanel selectedView = null;
 		switch(view) {

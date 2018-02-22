@@ -23,9 +23,9 @@ public class Identity {
 	
 	/**
 	 * <h5>Description</h5>
-	 * Non-empty Constructor for the Class Identity, 3 Strings parameters must be given 
+	 * <p>Non-empty Constructor for the Class Identity, 3 Strings parameters must be given 
 	 * or be declared as null, at least one parameter should be different than null otherwise
-	 * the suggested Constructor for Identity is the empty Identity() Constructor.
+	 * the suggested Constructor for Identity is the empty Identity() Constructor.</p>
 	 * 
 	 * @param uid Should be a String containing numbers only.
 	 * @param email String variable, no restrictions.

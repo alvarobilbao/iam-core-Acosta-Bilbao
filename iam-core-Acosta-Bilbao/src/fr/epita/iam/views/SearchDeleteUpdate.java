@@ -27,11 +27,19 @@ import java.awt.Dimension;
 import javax.swing.JTextPane;
 import java.awt.SystemColor;
 
+/**
+ * <h3>Description</h3>
+ * <p>This JPanel class is used to manage the identities persisted in the database 
+ * (more concretely: Search, Delete and Update operations). </p>
+ *
+ * <h3>Usage</h3>
+ * <p>This class is used as follows: </p>
+ *   <pre><code> JPanel instance = new SearchDeleteUpdate();</code></pre>
+ *
+ * @author Stéfano Acosta - Álvaro Bilbao
+ */
 public class SearchDeleteUpdate extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField txtUidSearch;
 	private JTextField txtDisplayNameSearch;

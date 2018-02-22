@@ -5,6 +5,14 @@ import java.awt.EventQueue;
 import fr.epita.iam.views.MainFrame;
 import fr.epita.utils.logger.Logger;
 
+/**
+ * <h3>Description</h3>
+ * <p>This is a launcher-type class, it's the Main class of the project, 
+ * it invokes the runnable MainFrame class. </p>
+ *
+ * @author Stéfano Acosta - Álvaro Bilbao
+ *
+ */
 public class Main {
 
 	private static final Logger LOGGER = new Logger(Main.class);

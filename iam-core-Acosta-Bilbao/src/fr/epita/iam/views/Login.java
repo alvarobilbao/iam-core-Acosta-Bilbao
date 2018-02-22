@@ -12,11 +12,19 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * <h3>Description</h3>
+ * <p>This JPanel class is used to validate Users or direct to a JPanel class 
+ * to create a User and persist in the database. </p>
+ *
+ * <h3>Usage</h3>
+ * <p>This class is used as follows: </p>
+ *   <pre><code> JPanel instance = new Login();</code></pre>
+ *
+ * @author Stéfano Acosta - Álvaro Bilbao
+ */
 public class Login extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField usernameField;
 	private JPasswordField passwordField;
